@@ -8,11 +8,17 @@
 
 import UIKit
 
-class viewedSession: UIViewController {
+class viewedSession: UIViewController  {
 
+    var titleStr: String!
+    @IBOutlet var titleLabel: UILabel!
+    
+    @IBAction func close(_ sender: AnyObject) {
+        performSegue(withIdentifier: "back", sender: self)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        titleLabel.text = titleStr
         // Do any additional setup after loading the view.
     }
 
