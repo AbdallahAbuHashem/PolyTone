@@ -33,5 +33,7 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Speech recognition captioning.</string>
 </dict>
 </plist>

@@ -446,6 +446,14 @@ Current Style</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yjd-9E-uFv">
+                                <frame key="frameInset" minX="8" minY="80" width="359" height="579"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Caption" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Li-lP-CgC">
                                 <frame key="frameInset" width="375" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -470,7 +478,7 @@ Current Style</string>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="Image 7"/>
                                 <connections>
-                                    <action selector="pause:" destination="Cl1-wR-O43" eventType="touchUpInside" id="R1J-xw-KdC"/>
+                                    <action selector="recordButtonTapped" destination="Cl1-wR-O43" eventType="touchUpInside" id="YJ3-ei-g7x"/>
                                 </connections>
                             </button>
                             <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="krh-Nb-yBs">
@@ -496,6 +504,7 @@ Current Style</string>
                         <outlet property="exitView" destination="T6e-Yz-nBt" id="QXG-o4-shl"/>
                         <outlet property="recordButton" destination="zYg-VD-cJA" id="3Fl-v6-Kch"/>
                         <outlet property="save" destination="H8H-i9-0kg" id="kRY-X3-66P"/>
+                        <outlet property="textView" destination="yjd-9E-uFv" id="58K-34-2Ak"/>
                         <outlet property="visualEffectView" destination="krh-Nb-yBs" id="0TN-KO-KUn"/>
                     </connections>
                 </viewController>
