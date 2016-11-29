@@ -88,11 +88,12 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate {
         
         // A recognition task represents a speech recognition session.
         // We keep a reference to the task so that it can be cancelled.
+        let prev = textView.text as String
         recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
             var isFinal = false
             
             if let result = result {
-                self.textView.text = result.bestTranscription.formattedString
+                self.textView.text = "\(prev)\n\n\(result.bestTranscription.formattedString)"
                 isFinal = result.isFinal
             }
             
@@ -135,7 +136,7 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate {
     }
     @IBAction func recordButtonTapped() {
         if isRunning {
-            audioEngine.stop()
+            audioEngine.pause()
             recognitionRequest?.endAudio()
             recordButton.setImage(#imageLiteral(resourceName: "Image 6"), for: .normal)
             print("Stopping")
