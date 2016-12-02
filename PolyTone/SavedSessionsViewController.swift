@@ -51,6 +51,9 @@ class SavedSessionsViewController: UIViewController, UITableViewDelegate, UITabl
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func unwindToViewController (sender: UIStoryboardSegue){
+        
+    }
 
     /*
     // MARK: - Navigation

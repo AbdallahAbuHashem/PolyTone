@@ -231,14 +231,9 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
     }
     @IBAction func recordButtonTapped() {
         if isRunning {
-            audioEngine.pause()
-            recorder.stop()
-            recorder.isMeteringEnabled = false
-            self.levelTimer.invalidate()
-            recognitionRequest?.endAudio()
+            stop()
             recordButton.setImage(#imageLiteral(resourceName: "Image 6"), for: .normal)
             print("Stopping")
-            isRunning = false
         } else {
             try! startRecording()
             recordButton.setImage(#imageLiteral(resourceName: "Image 7"), for: .normal)
@@ -282,6 +277,21 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
         view.endEditing(true)
     }
 
+    @IBAction func noSave(_ sender: Any) {
+        stop()
+    }
+    
+    @IBAction func save(_ sender: Any) {
+        stop()
+    }
+    func stop() {
+        audioEngine.pause()
+        recorder.stop()
+        recorder.isMeteringEnabled = false
+        self.levelTimer.invalidate()
+        recognitionRequest?.endAudio()
+        isRunning = false
+    }
     /*
     // MARK: - Navigation
 
