@@ -41,8 +41,8 @@ class Style: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if(segue.identifier == "newstyle"){
             //let cell = sender as! CustomCell
             let indexPath = self.tableView.indexPathForSelectedRow
-            let vc = segue.destination as! NewStyle
-            vc.titleStr = self.styles[indexPath!.row]
+           // let vc = segue.destination as! NewStyle
+          //  vc.titleStr = self.styles[indexPath!.row]
             print(styles[indexPath!.row])
            
         }

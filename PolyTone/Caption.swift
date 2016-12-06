@@ -15,6 +15,9 @@ import CoreAudio
 class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDelegate {
 
     @IBOutlet var exitView: UIView!
+    @IBOutlet var entryView: UIView!
+    @IBOutlet var saveView: UIView!
+    @IBOutlet weak var sessionName: UITextField!
     @IBOutlet weak var cancel: UIButton!
     @IBOutlet weak var exitButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
@@ -42,9 +45,12 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
         cancel.layer.cornerRadius = 15
         exitView.layer.cornerRadius = 15
         
-        recordButton.isEnabled = false
+        self.view.addSubview(entryView)
+        entryView.center.y = self.view.center.y + 36
         
-        try! startRecording()
+        recordButton.isEnabled = true
+        
+     //   try! startRecording()
     }
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -75,6 +81,7 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
     
     // Caption audio, yay!
     private func startRecording() throws {
+        recordButton.setImage(#imageLiteral(resourceName: "Image 7"), for: .normal)
         
         // Cancel the previous task if it's running.
         self.levels.removeAll()
@@ -232,27 +239,61 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
     @IBAction func recordButtonTapped() {
         if isRunning {
             stop()
-            recordButton.setImage(#imageLiteral(resourceName: "Image 6"), for: .normal)
             print("Stopping")
         } else {
+            if(entryView.superview === self.view) {
+             entryView.removeFromSuperview()
+            }
             try! startRecording()
-            recordButton.setImage(#imageLiteral(resourceName: "Image 7"), for: .normal)
             print("Starting")
             isRunning = true
         }
     }
+    
+   func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    @IBAction func saveButtonTapped() {
+        print("pressed save")
+      //  animateIn(viewModal: saveView)
+        
+        let fullPath = getDocumentsDirectory().appendingPathComponent("vader")
+        let text = "hello it's me"
+        let data = NSKeyedArchiver.archivedData(withRootObject: text)
+        do {
+            try data.write(to: fullPath)
+            print("saved")
+        } catch {
+            print("Couldn't write file")
+        }
+    }
 
-    func animateIn() {
-        self.view.addSubview(exitView)
-        exitView.center = self.view.center
-        exitView.alpha = 0
+    @IBAction func fontButtonTapped() {
+        stop()
+        
+        let fullPath = getDocumentsDirectory().appendingPathComponent("vader")
+        
+        
+        if let text = NSKeyedUnarchiver.unarchiveObject(withFile: fullPath.absoluteString) as? NSString {
+            print("unarchived", text)
+        }
+        
+    }
+    
+    func animateIn(viewModal: UIView)  {
+        self.view.addSubview(viewModal)
+        viewModal.center = self.view.center
+        viewModal.alpha = 0
         UIView.animate(withDuration: 0.4) {
             self.visualEffectView.isHidden = false
-            self.exitView.alpha = 1
+            viewModal.alpha = 1
         }
     }
     @IBAction func exit(_ sender: Any) {
-        animateIn()
+        animateIn(viewModal: exitView)
     }
   
     override func didReceiveMemoryWarning() {
@@ -260,16 +301,16 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
         // Dispose of any resources that can be recreated.
     }
     
-    func animateOut () {
+    func animateOut (viewModal: UIView?!) {
         UIView.animate(withDuration: 0.3, animations: {
-            self.exitView.alpha = 0
+            viewModal??.alpha = 0
             self.visualEffectView.isHidden = true
         }) { (success:Bool) in
-            self.exitView.removeFromSuperview()
+            viewModal??.removeFromSuperview()
         }
     }
-    @IBAction func cancelButton(_ sender: Any) {
-        animateOut()
+    @IBAction func cancelButton(_ sender: AnyObject) {
+        animateOut(viewModal: sender.superview)
     }
     
     func dismissKeyboard() {
@@ -281,16 +322,36 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
         stop()
     }
     
-    @IBAction func save(_ sender: Any) {
+    @IBAction func save(_ sender: AnyObject) {
         stop()
+        
+         let data = NSKeyedArchiver.archivedData(withRootObject: self.textView.attributedText)
+        
+         let fullPath = getDocumentsDirectory().appendingPathComponent("blog")
+         do {
+            try data.write(to: fullPath)
+         } catch {
+         print("Couldn't write file")
+         }
+        
+        animateOut(viewModal: sender.superview)
+        
+        // let ud = UserDefaults.standard
+        // ud.set(NSKeyedArchiver.archivedData(withRootObject: self.textView.attributedText), forKey: "blog")
+        
     }
     func stop() {
+        recordButton.setImage(#imageLiteral(resourceName: "Image 6"), for: .normal)
         audioEngine.pause()
         recorder.stop()
         recorder.isMeteringEnabled = false
         self.levelTimer.invalidate()
         recognitionRequest?.endAudio()
         isRunning = false
+    }
+    
+    @IBAction func unwindToViewController (sender: UIStoryboardSegue){
+        
     }
     /*
     // MARK: - Navigation

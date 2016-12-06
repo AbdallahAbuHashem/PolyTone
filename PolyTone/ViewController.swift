@@ -31,7 +31,6 @@ func hexStringToUIColor (hex:String) -> UIColor {
 }
 
 class ViewController: UIViewController {
-    @IBOutlet weak var changeStyle: UIButton!
     @IBOutlet weak var navBar: UINavigationItem!
     
     @IBOutlet weak var savedSessions: UIButton!
@@ -39,6 +38,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var captionButton: UIButton!
     
     var textColor = hexStringToUIColor(hex: "F2F2F2")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
@@ -49,13 +49,10 @@ class ViewController: UIViewController {
         //In ranges, first number is start position, and second number is length of the effect
         str.addAttribute(NSFontAttributeName, value: font1!, range: NSMakeRange(0, 10))
         str.addAttribute(NSFontAttributeName, value: font2!, range: NSMakeRange(13,22))
-        changeStyle.setAttributedTitle(str, for: .normal)
-        changeStyle.tintColor = textColor
-        changeStyle.titleLabel?.textAlignment = NSTextAlignment.center
-        changeStyle.layer.cornerRadius = 15
         savedSessions.layer.cornerRadius = 15
         captionButton.layer.cornerRadius = 15
         converseButton.layer.cornerRadius = 15
+
     }
     @IBAction func viewConverse(_ sender: Any) {
         self.performSegue(withIdentifier: "ConverseSegue", sender: nil)
