@@ -253,15 +253,7 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
     }
 
     @IBAction func fontButtonTapped() {
-       // stop()
-        
-        let fullPath = getDocumentsDirectory().appendingPathComponent("vader")
-        
-        
-        if let text = NSKeyedUnarchiver.unarchiveObject(withFile: fullPath.absoluteString) as? NSString {
-            print("unarchived", text)
-        }
-        
+       stop()
     }
     
     func animateIn(viewModal: UIView)  {
@@ -323,8 +315,10 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
          print("Couldn't write file")
          }*/
         
-   /*     let ud = UserDefaults.standard
-        ud.set(NSKeyedArchiver.archivedData(withRootObject: self.textView.attributedText), forKey: sessionName.text!)*/
+        
+     /*   let ud = UserDefaults.standard
+        ud.set(NSKeyedArchiver.archivedData(withRootObject: self.textView.attributedText), forKey: sessionName.text!)
+        ud.set(*/
         
         animateOut(viewModal: sender.superview)
         

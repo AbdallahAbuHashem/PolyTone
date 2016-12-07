@@ -344,37 +344,49 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ruG-b2-sV1">
-                                <rect key="frame" x="313" y="21" width="46" height="30"/>
+                                <rect key="frame" x="299" y="21" width="60" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="48"/>
-                                <state key="normal" title="+">
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="24"/>
+                                <state key="normal" title="Edit">
                                     <color key="titleColor" red="0.94891661410000006" green="0.9490789771" blue="0.94890636210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <state key="selected" title="Done"/>
                                 <connections>
-                                    <segue destination="J4o-f4-byo" kind="modal" identifier="newstyle" id="sjD-dX-unA"/>
+                                    <action selector="editButtonPressed" destination="SRh-Ul-Nva" eventType="touchUpInside" id="Zln-Re-JC1"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="65" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="aTl-Zd-X8b">
                                 <rect key="frame" x="0.0" y="72" width="375" height="595"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <button key="tableFooterView" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7nh-LQ-fGW">
+                                    <rect key="frame" x="0.0" y="139" width="375" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
+                                    <state key="normal" title="Create New Style">
+                                        <color key="titleColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <segue destination="J4o-f4-byo" kind="modal" id="IaO-fM-xoy"/>
+                                    </connections>
+                                </button>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="aFz-56-uR4" detailTextLabel="qv4-s9-jiF" rowHeight="65" style="IBUITableViewCellStyleSubtitle" id="qNl-5v-krm" customClass="CustomCell" customModule="PolyTone" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="65"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="cell" editingAccessoryType="disclosureIndicator" textLabel="aFz-56-uR4" detailTextLabel="qv4-s9-jiF" rowHeight="65" style="IBUITableViewCellStyleSubtitle" id="qNl-5v-krm" customClass="CustomCell" customModule="PolyTone" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="56" width="375" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qNl-5v-krm" id="UW3-Ks-vYo">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="64.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="This is a fucking stupid thing " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aFz-56-uR4">
-                                                    <rect key="frame" x="15" y="15" width="223.5" height="20.5"/>
+                                                    <rect key="frame" x="15" y="14" width="224" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="but now it works" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qv4-s9-jiF">
-                                                    <rect key="frame" x="15" y="35.5" width="93" height="14.5"/>
+                                                    <rect key="frame" x="15" y="35" width="93" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -399,13 +411,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="lcS-vl-iq4"/>
                     <connections>
+                        <outlet property="editButton" destination="ruG-b2-sV1" id="Q0u-4p-D9A"/>
                         <outlet property="tableView" destination="aTl-Zd-X8b" id="V8P-UH-gL6"/>
+                        <segue destination="J4o-f4-byo" kind="modal" identifier="newstyle" id="O62-9a-UEd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MJY-9l-dIk" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="A7r-R5-wBA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-211.50000000000003" y="1308.5"/>
+            <point key="canvasLocation" x="-211.5" y="1308.5"/>
         </scene>
         <!--New Style-->
         <scene sceneID="5fz-fk-xxc">
@@ -446,7 +460,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="Sd2-8e-BgO" rowHeight="61" style="IBUITableViewCellStyleDefault" id="EO1-Ke-2Gc" customClass="CustomCell" customModule="PolyTone" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="61"/>
+                                        <rect key="frame" x="0.0" y="56" width="375" height="61"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EO1-Ke-2Gc" id="0tc-cB-8V5">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60.5"/>
@@ -483,7 +497,7 @@
                                 <rect key="frame" x="18.5" y="604" width="152" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.91710931060000001" green="0.51274585719999999" blue="0.63408875470000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="Cancel">
                                     <color key="titleColor" red="0.94891661410000006" green="0.9490789771" blue="0.94890636210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
@@ -491,7 +505,7 @@
                                 <rect key="frame" x="207" y="604" width="152" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.31054526570000002" green="0.501670897" blue="0.95437961819999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="Add">
                                     <color key="titleColor" red="0.94891661410000006" green="0.9490789771" blue="0.94890636210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
@@ -863,4 +877,7 @@ this session?</string>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="O62-9a-UEd"/>
+    </inferredMetricsTieBreakers>
 </document>

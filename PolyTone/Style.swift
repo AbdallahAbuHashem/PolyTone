@@ -11,16 +11,21 @@ import UIKit
 class Style: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var editButton: UIButton!
     //array for table view example
     var styles = ["style 1","style 2","style 3"]
+    var previousSelectedIndexPath = IndexPath(row: 0, section: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-
+        tableView.allowsSelectionDuringEditing = true
+        //tableView.selectRow(at: previousSelectedIndexPath, animated: true, scrollPosition: UITableViewScrollPosition.none)
+        self.tableView(tableView, didSelectRowAt: previousSelectedIndexPath)
         // Do any additional setup after loading the view.
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return styles.count
     }
@@ -28,12 +33,26 @@ class Style: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let cell: CustomCell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as! CustomCell
         cell.title.text = styles[indexPath.row]
         cell.subtitle.text = styles[indexPath.row]
+        cell.selectionStyle = UITableViewCellSelectionStyle.blue
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("cell at index \(indexPath.row)")
-        performSegue(withIdentifier: "newstyle", sender: self)
+        if(tableView.isEditing) {
+            print("cell at index \(indexPath.row)")
+            self.performSegue(withIdentifier: "newstyle", sender: self)
+        } else {
+            //indicate current selected and previous deslected
+            tableView.deselectRow(at: indexPath, animated: true)
+            let cell = tableView.cellForRow(at: previousSelectedIndexPath)
+            cell?.accessoryType = UITableViewCellAccessoryType.none
+            previousSelectedIndexPath = indexPath
+            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
+            
+            
+            //
+        }
+        
     }
     
     // send data to new view controller
@@ -51,6 +70,16 @@ class Style: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func editButtonPressed() {
+        if(tableView.isEditing) {
+            editButton.setTitle("Edit", for: UIControlState.normal)
+            tableView.setEditing(false, animated: true)
+        } else {
+            editButton.setTitle("Done", for: UIControlState.normal)
+            tableView.setEditing(true, animated: true)
+        }
     }
     
     @IBAction func unwindToViewController (sender: UIStoryboardSegue){
