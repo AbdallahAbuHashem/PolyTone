@@ -44,7 +44,7 @@ class SavedSessionsViewController: UIViewController, UITableViewDelegate, UITabl
 
 
         // Get the document directory url
-        let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+     /*   let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         do {
             // Get the directory contents urls (including subfolders urls)
             let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: [])
@@ -57,14 +57,14 @@ class SavedSessionsViewController: UIViewController, UITableViewDelegate, UITabl
             
         } catch let error as NSError {
             print(error.localizedDescription)
-        }
+        }*/
         
-       // let ud = UserDefaults.standard
+       let ud = UserDefaults.standard
 
-    /*    if let data = ud.object(forKey: "blog") as? NSData {
+       if let data = ud.object(forKey: "testing") as? NSData {
             let blog = NSKeyedUnarchiver.unarchiveObject(with: data as Data)
             print(blog as Any)
-        }*/
+        }
 
     }
 

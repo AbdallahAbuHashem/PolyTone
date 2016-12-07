@@ -30,6 +30,7 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
     private var isRunning = false
+    private var isSaved = true
     
     private var recorder: AVAudioRecorder!
     private var levelTimer = Timer()
@@ -154,6 +155,7 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
                         finalText.append(str)
                     }
                     self.textView.attributedText = finalText
+                    self.isSaved = false
                 } else {
                     let addition: NSMutableAttributedString = NSMutableAttributedString(string:"\n\n" + result.bestTranscription.formattedString)
                     let temp = NSMutableAttributedString(string: "")
@@ -249,30 +251,9 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
             isRunning = true
         }
     }
-    
-   func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let documentsDirectory = paths[0]
-        return documentsDirectory
-    }
-    
-    @IBAction func saveButtonTapped() {
-        print("pressed save")
-      //  animateIn(viewModal: saveView)
-        
-        let fullPath = getDocumentsDirectory().appendingPathComponent("vader")
-        let text = "hello it's me"
-        let data = NSKeyedArchiver.archivedData(withRootObject: text)
-        do {
-            try data.write(to: fullPath)
-            print("saved")
-        } catch {
-            print("Couldn't write file")
-        }
-    }
 
     @IBAction func fontButtonTapped() {
-        stop()
+       // stop()
         
         let fullPath = getDocumentsDirectory().appendingPathComponent("vader")
         
@@ -293,7 +274,14 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
         }
     }
     @IBAction func exit(_ sender: Any) {
-        animateIn(viewModal: exitView)
+        if(isRunning) {
+            stop()
+        }
+        if(isSaved) {
+            performSegue(withIdentifier: "exitSegue", sender: self)
+        } else {
+            animateIn(viewModal: exitView)
+        }
     }
   
     override func didReceiveMemoryWarning() {
@@ -309,8 +297,9 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
             viewModal??.removeFromSuperview()
         }
     }
+    
     @IBAction func cancelButton(_ sender: AnyObject) {
-        animateOut(viewModal: sender.superview)
+            animateOut(viewModal: sender.superview)
     }
     
     func dismissKeyboard() {
@@ -325,21 +314,47 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
     @IBAction func save(_ sender: AnyObject) {
         stop()
         
-         let data = NSKeyedArchiver.archivedData(withRootObject: self.textView.attributedText)
+      /*   let data = NSKeyedArchiver.archivedData(withRootObject: self.textView.attributedText)
         
          let fullPath = getDocumentsDirectory().appendingPathComponent("blog")
          do {
             try data.write(to: fullPath)
          } catch {
          print("Couldn't write file")
-         }
+         }*/
+        
+   /*     let ud = UserDefaults.standard
+        ud.set(NSKeyedArchiver.archivedData(withRootObject: self.textView.attributedText), forKey: sessionName.text!)*/
         
         animateOut(viewModal: sender.superview)
         
-        // let ud = UserDefaults.standard
-        // ud.set(NSKeyedArchiver.archivedData(withRootObject: self.textView.attributedText), forKey: "blog")
+        isSaved = true
+    }
+    
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    @IBAction func saveButtonTapped() {
+        print("pressed save")
+        animateIn(viewModal: saveView)
+        
+        /*  let fullPath = getDocumentsDirectory().appendingPathComponent("vader")
+         let text = "hello it's me"
+         let data = NSKeyedArchiver.archivedData(withRootObject: text)
+         do {
+         try data.write(to: fullPath)
+         print("saved")
+         } catch {
+         print("Couldn't write file")
+         }*/
+        
         
     }
+    
     func stop() {
         recordButton.setImage(#imageLiteral(resourceName: "Image 6"), for: .normal)
         audioEngine.pause()

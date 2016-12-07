@@ -187,13 +187,25 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4GB-wV-VXF" userLabel="Info Button">
-                                <rect key="frame" x="167" y="563" width="41" height="41"/>
+                                <rect key="frame" x="170" y="583" width="35" height="35"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <color key="backgroundColor" red="0.31054526570000002" green="0.501670897" blue="0.95437961819999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <state key="normal" image="Info Button">
                                     <color key="titleColor" red="0.94891661410000006" green="0.9490789771" blue="0.94890636210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="pressedInfo" destination="BYZ-38-t0r" eventType="touchUpInside" id="m5b-SM-4he"/>
+                                </connections>
                             </button>
+                            <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sBG-nN-xvA">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="4Je-pS-IWB">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -201,11 +213,102 @@
                     <navigationItem key="navigationItem" id="YEN-D3-f85"/>
                     <connections>
                         <outlet property="captionButton" destination="aJw-Oi-Cyg" id="a4A-G6-8XM"/>
+                        <outlet property="closeButton" destination="Gb3-AP-BlC" id="2ea-Ps-T3V"/>
                         <outlet property="converseButton" destination="vj6-gx-aQH" id="wH1-st-o9i"/>
+                        <outlet property="infoView" destination="paY-Iz-Zut" id="tiO-VT-rd3"/>
                         <outlet property="navBar" destination="YEN-D3-f85" id="nOT-TZ-Uyl"/>
                         <outlet property="savedSessions" destination="IJe-l9-GhQ" id="RNh-yG-cZa"/>
+                        <outlet property="visualEffectView" destination="sBG-nN-xvA" id="K23-9Q-wlI"/>
                     </connections>
                 </viewController>
+                <view contentMode="scaleToFill" id="paY-Iz-Zut" userLabel="Info View">
+                    <rect key="frame" x="0.0" y="0.0" width="345" height="485"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNc-NF-ncw">
+                            <rect key="frame" x="0.0" y="34" width="345" height="451"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GgN-lx-uZJ">
+                            <rect key="frame" x="12" y="115" width="321" height="162"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <attributedString key="attributedText">
+                                <fragment>
+                                    <string key="content">Live Captioning: Aim your device’s microphone towards the person speaking and everything will be live captioned with emotion and displayed. The split screen format will enable in 1-on-1 converation mode. </string>
+                                    <attributes>
+                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                        <font key="NSFont" size="18" name="Avenir-Light"/>
+                                        <real key="NSKern" value="0.0"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                            <tabStops/>
+                                        </paragraphStyle>
+                                        <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                        <real key="NSStrokeWidth" value="0.0"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00K-k8-WXQ">
+                            <rect key="frame" x="31" y="71" width="283" height="36"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <attributedString key="attributedText">
+                                <fragment content="How the App Works ">
+                                    <attributes>
+                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                        <font key="NSFont" size="24" name="Avenir-Medium"/>
+                                        <real key="NSKern" value="0.0"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                            <tabStops/>
+                                        </paragraphStyle>
+                                        <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                        <real key="NSStrokeWidth" value="0.0"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0gl-79-j6P">
+                            <rect key="frame" x="12" y="285" width="321" height="109"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <attributedString key="attributedText">
+                                <fragment content="iMessage Extension: Enabling the extension will allow you to manipulate your texts in a variety of ways to display emotions.">
+                                    <attributes>
+                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                        <font key="NSFont" size="18" name="Avenir-Book"/>
+                                        <real key="NSKern" value="0.0"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                            <tabStops/>
+                                        </paragraphStyle>
+                                        <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                        <real key="NSStrokeWidth" value="0.0"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gb3-AP-BlC">
+                            <rect key="frame" x="62" y="420" width="220" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.1851239502" green="0.50285178419999998" blue="0.93060964349999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
+                            <state key="normal" title="Close">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="cancelButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q2n-lB-XTR"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Info Icon" translatesAutoresizingMaskIntoConstraints="NO" id="Wk4-tl-HxN">
+                            <rect key="frame" x="142" y="3" width="60" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                    </subviews>
+                </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-146.5" y="236.5"/>
@@ -492,9 +595,10 @@
                         <outlet property="recordButton" destination="zYg-VD-cJA" id="3Fl-v6-Kch"/>
                         <outlet property="save" destination="H8H-i9-0kg" id="kRY-X3-66P"/>
                         <outlet property="saveView" destination="gZN-WS-XVa" id="Nvu-gi-47h"/>
-                        <outlet property="sessionName" destination="QBm-NN-SOE" id="I8i-Yu-eTn"/>
+                        <outlet property="sessionName" destination="gw5-Pn-hIx" id="AgR-Rc-IEx"/>
                         <outlet property="textView" destination="yjd-9E-uFv" id="58K-34-2Ak"/>
                         <outlet property="visualEffectView" destination="krh-Nb-yBs" id="0TN-KO-KUn"/>
+                        <segue destination="Ecc-K9-GHL" kind="unwind" identifier="exitSegue" unwindAction="unwindToViewControllerWithSender:" id="IFh-oi-gX7"/>
                     </connections>
                 </viewController>
                 <view contentMode="scaleToFill" id="gZN-WS-XVa">
@@ -691,11 +795,32 @@ this session?</string>
                     <view key="view" contentMode="scaleToFill" id="gBM-Xg-O54">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Converse" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3IM-yf-76V">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.91710931060000001" green="0.51274585719999999" blue="0.63408875470000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
+                                <color key="textColor" red="0.94891661410000006" green="0.9490789771" blue="0.94890636210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ocB-V0-Kgh" userLabel="Exit Button">
+                                <rect key="frame" x="7" y="11" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="close">
+                                    <color key="titleColor" red="0.94891661410000006" green="0.9490789771" blue="0.94890636210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ujj-Uj-hcd" kind="unwind" unwindAction="unwindToViewControllerWithSender:" id="TW1-ee-AVv"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="ucn-eE-mM8"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mLl-vP-RwQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ujj-Uj-hcd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1076.5" y="784.5"/>
         </scene>
@@ -727,6 +852,7 @@ this session?</string>
         <image name="Group (3)" width="183" height="195"/>
         <image name="Image 6" width="222" height="219"/>
         <image name="Info Button" width="108" height="108"/>
+        <image name="Info Icon" width="183" height="180"/>
         <image name="Save Button" width="222" height="219"/>
         <image name="caption 2" width="78" height="79"/>
         <image name="close" width="50" height="50"/>
