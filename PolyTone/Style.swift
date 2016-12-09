@@ -13,8 +13,10 @@ class Style: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var editButton: UIButton!
     //array for table view example
-    var styles = ["style 1","style 2","style 3"]
+    var styles = ["Professor Landay","Shia Labeouf","Abdallah"]
+    var selectedStyle = 0
     var previousSelectedIndexPath = IndexPath(row: 0, section: 0)
+    var fonts = ["Avenir", "AmericanTypewriter", "HelveticaNeue"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,13 +34,14 @@ class Style: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CustomCell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as! CustomCell
         cell.title.text = styles[indexPath.row]
-        cell.subtitle.text = styles[indexPath.row]
+        cell.title.font = UIFont(name: fonts[indexPath.row], size: 18)
+        //cell.subtitle.text = styles[indexPath.row]
         cell.selectionStyle = UITableViewCellSelectionStyle.blue
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(tableView.isEditing) {
+      /*  if(tableView.isEditing) {
             print("cell at index \(indexPath.row)")
             self.performSegue(withIdentifier: "newstyle", sender: self)
         } else {
@@ -48,11 +51,13 @@ class Style: UIViewController, UITableViewDelegate, UITableViewDataSource {
             cell?.accessoryType = UITableViewCellAccessoryType.none
             previousSelectedIndexPath = indexPath
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
-            
-            
-            //
-        }
+
+        }*/
         
+        if(!tableView.isEditing) {
+            selectedStyle = indexPath.row
+            self.performSegue(withIdentifier: "choseStyle", sender: self)
+        }
     }
     
     // send data to new view controller

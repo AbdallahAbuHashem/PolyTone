@@ -108,26 +108,38 @@
                                     <color key="titleColor" red="0.94891661410000006" green="0.9490789771" blue="0.94890636210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="hTi-Pd-myc" kind="unwind" unwindAction="unwindToViewControllerWithSender:" id="mFL-qK-qxV"/>
+                                    <segue destination="hTi-Pd-myc" kind="unwind" identifier="exitSegue" unwindAction="unwindToViewControllerWithSender:" id="mFL-qK-qxV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QMo-kT-jbX">
                                 <rect key="frame" x="21" y="615" width="39" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="delete-xxl"/>
+                                <connections>
+                                    <action selector="delteButtonPressed" destination="gfy-OG-5hw" eventType="touchUpInside" id="INg-O6-6rZ"/>
+                                </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IQv-jP-hm9">
+                                <rect key="frame" x="0.0" y="68" width="375" height="526"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="qbL-Sq-vqj"/>
                     <connections>
+                        <outlet property="text" destination="IQv-jP-hm9" id="Xqm-Gg-uZc"/>
                         <outlet property="titleLabel" destination="j3h-dO-1TO" id="ecQ-Kx-9vj"/>
+                        <segue destination="hTi-Pd-myc" kind="unwind" unwindAction="unwindToViewControllerWithSender:" id="Mrx-5x-UcU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t5i-ni-pxf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="hTi-Pd-myc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1330" y="2215"/>
+            <point key="canvasLocation" x="-1330.5" y="2214.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -340,7 +352,7 @@
                                     <color key="titleColor" red="0.94891661410000006" green="0.9490789771" blue="0.94890636210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="A7r-R5-wBA" kind="unwind" unwindAction="unwindToViewControllerWithSender:" id="iQg-ZV-bnf"/>
+                                    <segue destination="A7r-R5-wBA" kind="unwind" unwindAction="unwindToViewControllerWithSender:" id="J3D-xP-v1a"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ruG-b2-sV1">
@@ -359,43 +371,24 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="595"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <button key="tableFooterView" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7nh-LQ-fGW">
-                                    <rect key="frame" x="0.0" y="139" width="375" height="22"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
-                                    <state key="normal" title="Create New Style">
-                                        <color key="titleColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    </state>
-                                    <connections>
-                                        <segue destination="J4o-f4-byo" kind="modal" id="IaO-fM-xoy"/>
-                                    </connections>
-                                </button>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="cell" editingAccessoryType="disclosureIndicator" textLabel="aFz-56-uR4" detailTextLabel="qv4-s9-jiF" rowHeight="65" style="IBUITableViewCellStyleSubtitle" id="qNl-5v-krm" customClass="CustomCell" customModule="PolyTone" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="65"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="cell" textLabel="aFz-56-uR4" rowHeight="65" style="IBUITableViewCellStyleDefault" id="qNl-5v-krm" customClass="CustomCell" customModule="PolyTone" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qNl-5v-krm" id="UW3-Ks-vYo">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="This is a fucking stupid thing " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aFz-56-uR4">
-                                                    <rect key="frame" x="15" y="14" width="224" height="21"/>
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="64"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="but now it works" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qv4-s9-jiF">
-                                                    <rect key="frame" x="15" y="35" width="93" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="subtitle" destination="qv4-s9-jiF" id="164-bw-tdk"/>
                                             <outlet property="title" destination="aFz-56-uR4" id="4K4-Eg-pkn"/>
                                         </connections>
                                     </tableViewCell>
@@ -414,6 +407,7 @@
                         <outlet property="editButton" destination="ruG-b2-sV1" id="Q0u-4p-D9A"/>
                         <outlet property="tableView" destination="aTl-Zd-X8b" id="V8P-UH-gL6"/>
                         <segue destination="J4o-f4-byo" kind="modal" identifier="newstyle" id="O62-9a-UEd"/>
+                        <segue destination="A7r-R5-wBA" kind="unwind" identifier="choseStyle" unwindAction="unwindToCaptionViewWithSender:" id="mwN-TJ-XlO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MJY-9l-dIk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -460,7 +454,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="Sd2-8e-BgO" rowHeight="61" style="IBUITableViewCellStyleDefault" id="EO1-Ke-2Gc" customClass="CustomCell" customModule="PolyTone" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="61"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="61"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EO1-Ke-2Gc" id="0tc-cB-8V5">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60.5"/>
@@ -609,10 +603,12 @@
                         <outlet property="recordButton" destination="zYg-VD-cJA" id="3Fl-v6-Kch"/>
                         <outlet property="save" destination="H8H-i9-0kg" id="kRY-X3-66P"/>
                         <outlet property="saveView" destination="gZN-WS-XVa" id="Nvu-gi-47h"/>
-                        <outlet property="sessionName" destination="gw5-Pn-hIx" id="AgR-Rc-IEx"/>
+                        <outlet property="sessionName" destination="gw5-Pn-hIx" id="SbR-w8-Vgt"/>
+                        <outlet property="sessionName2" destination="QBm-NN-SOE" id="DTd-7v-CFl"/>
                         <outlet property="textView" destination="yjd-9E-uFv" id="58K-34-2Ak"/>
                         <outlet property="visualEffectView" destination="krh-Nb-yBs" id="0TN-KO-KUn"/>
                         <segue destination="Ecc-K9-GHL" kind="unwind" identifier="exitSegue" unwindAction="unwindToViewControllerWithSender:" id="IFh-oi-gX7"/>
+                        <segue destination="A7r-R5-wBA" kind="unwind" unwindAction="unwindToThisViewWithSender:" id="DLR-VP-yBP"/>
                     </connections>
                 </viewController>
                 <view contentMode="scaleToFill" id="gZN-WS-XVa">
@@ -828,15 +824,72 @@ this session?</string>
                                     <segue destination="ujj-Uj-hcd" kind="unwind" unwindAction="unwindToViewControllerWithSender:" id="TW1-ee-AVv"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="urh-BG-AqS">
+                                <rect key="frame" x="104" y="599" width="166" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.1851239502" green="0.50285178419999998" blue="0.93060964349999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
+                                <state key="normal" title="Tap to type">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedType" destination="KcF-m3-NGU" eventType="touchUpInside" id="rHM-D2-p6Z"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g2b-dk-CIQ">
+                                <rect key="frame" x="284" y="584" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="Image 6"/>
+                                <connections>
+                                    <action selector="recordButtonTapped" destination="KcF-m3-NGU" eventType="touchUpInside" id="0AQ-hJ-ZRz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6UM-vm-LCU">
+                                <rect key="frame" x="325" y="20" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="split icon"/>
+                                <connections>
+                                    <action selector="switchViews" destination="KcF-m3-NGU" eventType="touchUpInside" id="bTG-bs-E6q"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" keyboardDismissMode="interactive" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="j7i-eo-ICY">
+                                <rect key="frame" x="8" y="69" width="359" height="493"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="ucn-eE-mM8"/>
+                    <connections>
+                        <outlet property="closeButton" destination="ocB-V0-Kgh" id="EfG-H2-vm5"/>
+                        <outlet property="header" destination="3IM-yf-76V" id="i8Q-PQ-qlp"/>
+                        <outlet property="oppTextView" destination="TGW-MA-XmC" id="tZr-R6-l99"/>
+                        <outlet property="oppView" destination="jWp-bf-g1q" id="1Ia-5Q-kJw"/>
+                        <outlet property="recordButton" destination="g2b-dk-CIQ" id="W99-if-j2n"/>
+                        <outlet property="splitButton" destination="6UM-vm-LCU" id="QbT-Bh-z8w"/>
+                        <outlet property="textView" destination="j7i-eo-ICY" id="aGN-Mx-A53"/>
+                    </connections>
                 </viewController>
+                <view contentMode="scaleToFill" id="jWp-bf-g1q">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="297"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TGW-MA-XmC">
+                            <rect key="frame" x="8" y="0.0" width="359" height="277"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
+                </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mLl-vP-RwQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ujj-Uj-hcd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1076.5" y="784.5"/>
+            <point key="canvasLocation" x="1172.5" y="1166.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mY6-Ua-tR2">
@@ -871,13 +924,11 @@ this session?</string>
         <image name="caption 2" width="78" height="79"/>
         <image name="close" width="50" height="50"/>
         <image name="delete-xxl" width="117" height="117"/>
+        <image name="split icon" width="256" height="256"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="O62-9a-UEd"/>
-    </inferredMetricsTieBreakers>
 </document>

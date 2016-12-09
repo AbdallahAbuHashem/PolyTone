@@ -18,6 +18,7 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
     @IBOutlet var entryView: UIView!
     @IBOutlet var saveView: UIView!
     @IBOutlet weak var sessionName: UITextField!
+    @IBOutlet weak var sessionName2: UITextField!
     @IBOutlet weak var cancel: UIButton!
     @IBOutlet weak var exitButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
@@ -31,6 +32,8 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
     private let audioEngine = AVAudioEngine()
     private var isRunning = false
     private var isSaved = true
+    private var style = 0
+    private var fonts = [ ["Avenir", "Avenir-Medium", "Avenir-Heavy"], ["AmericanTypewriter-Light", "AmericanTypewriter", "AmericanTypewriter-Bold"], ["HelveticaNeue", "HelveticaNeue-Medium", "HelveticaNeue-Bold"] ]
     
     private var recorder: AVAudioRecorder!
     private var levelTimer = Timer()
@@ -50,9 +53,8 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
         entryView.center.y = self.view.center.y + 36
         
         recordButton.isEnabled = true
-        
-     //   try! startRecording()
     }
+    
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -78,6 +80,12 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
             }
         }
 
+    }
+    
+    @IBAction func unwindToCaptionView(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? Style {
+            style = sourceViewController.selectedStyle
+        }
     }
     
     // Caption audio, yay!
@@ -119,7 +127,10 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
         // We keep a reference to the task so that it can be cancelled.
         //var lastStylized: NSMutableAttributedString = NSMutableAttributedString(string:"")
         let prev = textView.attributedText
-        let font:UIFont? = UIFont(name: "Avenir-Medium", size: 18.0)
+        let fontLight = fonts[style][0]
+        let fontMedium = fonts[style][1]
+        let fontLarge = fonts[style][2]
+        let font:UIFont? = UIFont(name: fontLight, size: 18.0)
         recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
             var isFinal = false
             
@@ -146,10 +157,10 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
                         let fontSize = (self.levels[0]/self.levels[idx])*18.0
                         print("Got Index")
                         if fontSize > 32.0 {
-                            let font:UIFont? = UIFont(name: "Avenir-Heavy", size: CGFloat(fontSize))
+                            let font:UIFont? = UIFont(name: fontLarge, size: CGFloat(fontSize))
                             str.addAttribute(NSFontAttributeName, value: font!, range: NSMakeRange(0, str.length))
                         } else {
-                            let font:UIFont? = UIFont(name: "Avenir-Medium", size: CGFloat(fontSize))
+                            let font:UIFont? = UIFont(name: fontMedium, size: CGFloat(fontSize))
                             str.addAttribute(NSFontAttributeName, value: font!, range: NSMakeRange(0, str.length))
                         }
                         finalText.append(str)
@@ -207,6 +218,7 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
         view.addGestureRecognizer(tap)
 
     }
+    
     func levelTimerCallback() {
         //we have to update meters before we can get the metering values
         recorder.updateMeters()
@@ -305,20 +317,33 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
     
     @IBAction func save(_ sender: AnyObject) {
         stop()
+       
+        let ud = UserDefaults.standard
+
+        //1. Get lecture names
+        var lectureNames = [""]
+        if let data = ud.object(forKey: "lecure names") as? NSData {
+            let lectureNamesData = NSKeyedUnarchiver.unarchiveObject(with: data as Data)
+            print(lectureNamesData as Any)
+            lectureNames = lectureNamesData as! [AnyObject] as! [String]
+        }
         
-      /*   let data = NSKeyedArchiver.archivedData(withRootObject: self.textView.attributedText)
+        var name: String
+        if(sender.superview === exitView) {
+          name = sessionName2.text!
+        } else {
+            name = sessionName.text!
+        }
         
-         let fullPath = getDocumentsDirectory().appendingPathComponent("blog")
-         do {
-            try data.write(to: fullPath)
-         } catch {
-         print("Couldn't write file")
-         }*/
+        print(name)
         
+        //2. Add new lecture name
+        lectureNames.append(name)
+        print("added lecture name to array, name:", name)
+        ud.set(NSKeyedArchiver.archivedData(withRootObject: lectureNames), forKey: "lecure names")
         
-     /*   let ud = UserDefaults.standard
-        ud.set(NSKeyedArchiver.archivedData(withRootObject: self.textView.attributedText), forKey: sessionName.text!)
-        ud.set(*/
+        //3. Save actual lecture data by session name.
+        ud.set(NSKeyedArchiver.archivedData(withRootObject: self.textView.attributedText), forKey: name)
         
         animateOut(viewModal: sender.superview)
         
@@ -335,18 +360,6 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
     @IBAction func saveButtonTapped() {
         print("pressed save")
         animateIn(viewModal: saveView)
-        
-        /*  let fullPath = getDocumentsDirectory().appendingPathComponent("vader")
-         let text = "hello it's me"
-         let data = NSKeyedArchiver.archivedData(withRootObject: text)
-         do {
-         try data.write(to: fullPath)
-         print("saved")
-         } catch {
-         print("Couldn't write file")
-         }*/
-        
-        
     }
     
     func stop() {
@@ -357,10 +370,6 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
         self.levelTimer.invalidate()
         recognitionRequest?.endAudio()
         isRunning = false
-    }
-    
-    @IBAction func unwindToViewController (sender: UIStoryboardSegue){
-        
     }
     /*
     // MARK: - Navigation

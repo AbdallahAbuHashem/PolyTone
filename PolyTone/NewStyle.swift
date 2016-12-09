@@ -35,7 +35,7 @@ class NewStyle: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CustomCell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as! CustomCell
         cell.title.text = custom[indexPath.row]
-        cell.subtitle.text = "[INPUT]"
+        //cell.subtitle.text = "[INPUT]"
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

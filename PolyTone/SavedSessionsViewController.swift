@@ -20,52 +20,28 @@ class SavedSessionsViewController: UIViewController, UITableViewDelegate, UITabl
         return documentsDirectory
     }
     
+    //necessary for reload after unwind
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        let ud = UserDefaults.standard
+        if let data = ud.object(forKey: "lecure names") as? NSData {
+            let savedLectures = NSKeyedUnarchiver.unarchiveObject(with: data as Data)
+            print(savedLectures as Any)
+            titles = savedLectures as! [AnyObject] as! [String]
+        }
+        
+        self.tableView.reloadData()
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        
         // Do any additional setup after loading the view.
         
-   /*     let fullPath = getDocumentsDirectory().appendingPathComponent("blog")
-
-        
-        let fileContent = try? NSString(contentsOfFile: fullPath.absoluteString, encoding: String.Encoding.utf8.rawValue)
-        
-        print(fileContent as Any)
-        let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        do{
-        let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: [])
-        
-        print(directoryContents)
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }*/
-        
-        
-
-        // Get the document directory url
-  /*      let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        do {
-            // Get the directory contents urls (including subfolders urls)
-            let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: [])
-
-            print(directoryContents)
-            print(directoryContents[3].absoluteString)
-            if let text = NSKeyedUnarchiver.unarchiveObject(withFile: directoryContents[3].absoluteString) as? [NSAttributedString] {
-                print("unarchived object", text)
-            }
-            
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }*/
-        
-     //  let ud = UserDefaults.standard
-
-    /*   if let data = ud.object(forKey: "testing") as? NSData {
-            let blog = NSKeyedUnarchiver.unarchiveObject(with: data as Data)
-            print(blog as Any)
-        }*/
 
     }
 
