@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="1u8-0O-y4I">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11761" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="1u8-0O-y4I">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -45,14 +45,14 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="iuf-u8-iSg" rowHeight="74" style="IBUITableViewCellStyleDefault" id="3QC-Ji-cyA" customClass="CustomCell" customModule="PolyTone" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="74"/>
+                                        <rect key="frame" x="0.0" y="56" width="375" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3QC-Ji-cyA" id="sJO-6g-DH4">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="73.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="73"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="This is a fucking stupid thing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iuf-u8-iSg">
-                                                    <rect key="frame" x="15" y="0.0" width="325" height="73.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="325" height="73"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -373,7 +373,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="cell" textLabel="aFz-56-uR4" rowHeight="65" style="IBUITableViewCellStyleDefault" id="qNl-5v-krm" customClass="CustomCell" customModule="PolyTone" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="65"/>
+                                        <rect key="frame" x="0.0" y="56" width="375" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qNl-5v-krm" id="UW3-Ks-vYo">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
@@ -454,10 +454,10 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="Sd2-8e-BgO" rowHeight="61" style="IBUITableViewCellStyleDefault" id="EO1-Ke-2Gc" customClass="CustomCell" customModule="PolyTone" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="61"/>
+                                        <rect key="frame" x="0.0" y="56" width="375" height="61"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EO1-Ke-2Gc" id="0tc-cB-8V5">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4tC-AD-5wC">
@@ -468,7 +468,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Font" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sd2-8e-BgO">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="60.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="60"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -821,6 +821,7 @@ this session?</string>
                                     <color key="titleColor" red="0.94891661410000006" green="0.9490789771" blue="0.94890636210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="terminate:" destination="KcF-m3-NGU" eventType="touchUpInside" id="p0C-jc-ANY"/>
                                     <segue destination="ujj-Uj-hcd" kind="unwind" unwindAction="unwindToViewControllerWithSender:" id="TW1-ee-AVv"/>
                                 </connections>
                             </button>
@@ -853,7 +854,7 @@ this session?</string>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" keyboardDismissMode="interactive" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="j7i-eo-ICY">
-                                <rect key="frame" x="8" y="69" width="359" height="493"/>
+                                <rect key="frame" x="8" y="78" width="359" height="493"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>

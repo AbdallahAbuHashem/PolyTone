@@ -371,6 +371,10 @@ class Caption: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDele
         recognitionRequest?.endAudio()
         isRunning = false
     }
+    
+    @IBAction func unwindToViewController (sender: UIStoryboardSegue){
+        
+    }
     /*
     // MARK: - Navigation
 

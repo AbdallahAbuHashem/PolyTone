@@ -243,6 +243,9 @@ class Converse: UIViewController, UITextViewDelegate, SFSpeechRecognizerDelegate
     }
     // MARK: SFSpeechRecognizerDelegate
     
+    @IBAction func terminate(_ sender: Any) {
+        stop()
+    }
     public func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         if available {
             recordButton.isEnabled = true
