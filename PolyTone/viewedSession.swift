@@ -12,11 +12,44 @@ class viewedSession: UIViewController  {
 
     var titleStr: String!
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var text: UITextView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = titleStr
-        // Do any additional setup after loading the view.
+        
+        //get text
+        let ud = UserDefaults.standard
+        if let data = ud.object(forKey: titleStr) as? NSData {
+             let lectureText = NSKeyedUnarchiver.unarchiveObject(with: data as Data)
+            print(lectureText as Any)
+            text.attributedText = lectureText as! NSAttributedString!
+        }
+    }
+    
+    @IBAction func delteButtonPressed() {
+        let ud = UserDefaults.standard
+        
+        //remove lecture name from array
+        
+        //1. get lecture names
+        var lectureNames = [""]
+        if let data = ud.object(forKey: "lecure names") as? NSData {
+            let lectureNamesData = NSKeyedUnarchiver.unarchiveObject(with: data as Data)
+            print(lectureNamesData as Any)
+            lectureNames = lectureNamesData as! [AnyObject] as! [String]
+        }
+        
+        //2. remove lecure name
+        let index = lectureNames.index(of: titleStr)
+        lectureNames.remove(at: index!)
+        ud.set(NSKeyedArchiver.archivedData(withRootObject: lectureNames), forKey: "lecure names")
+        
+        //3. remove lecture text
+        ud.removeObject(forKey: titleStr)
+        
+        //exit
+        performSegue(withIdentifier: "exitSegue", sender: self)
     }
 
     override func didReceiveMemoryWarning() {

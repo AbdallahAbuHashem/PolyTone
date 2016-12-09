@@ -14,11 +14,35 @@ class SavedSessionsViewController: UIViewController, UITableViewDelegate, UITabl
     
     var titles = ["CS 147 Tues Lecture","A Team Meeting","Midterm Review"]
     
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    //necessary for reload after unwind
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        let ud = UserDefaults.standard
+        if let data = ud.object(forKey: "lecure names") as? NSData {
+            let savedLectures = NSKeyedUnarchiver.unarchiveObject(with: data as Data)
+            print(savedLectures as Any)
+            titles = savedLectures as! [AnyObject] as! [String]
+        }
+        
+        self.tableView.reloadData()
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        
         // Do any additional setup after loading the view.
+        
+
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
